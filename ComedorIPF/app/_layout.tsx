@@ -1,0 +1,4 @@
+import { Stack } from 'expo-router';
+import { StoreProvider } from '../lib/store';
+import { colors, InstitutionalHeader } from '../components/ui';
+export default function RootLayout() { return <StoreProvider><Stack screenOptions={{ headerStyle: { backgroundColor: colors.cream }, headerTintColor: colors.ink, headerTitleStyle: { fontWeight: '800' } }}><Stack.Screen name="(tabs)" options={{ header: () => <InstitutionalHeader /> }} /><Stack.Screen name="menu/[id]" options={{ title: 'Detalle del plato' }} /><Stack.Screen name="search/[...term]" options={{ title: 'Resultados' }} /><Stack.Screen name="login" options={{ presentation: 'modal', title: 'Acceso' }} /><Stack.Screen name="confirm" options={{ presentation: 'modal', title: 'Confirmar pedido' }} /><Stack.Screen name="+not-found" options={{ title: 'No encontrado' }} /></Stack></StoreProvider>; }

@@ -1,0 +1,6 @@
+import { Redirect } from 'expo-router';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { colors, screen } from '../../components/ui';
+import { useStore } from '../../lib/store';
+export default function Cocina() { const { loggedIn, turns } = useStore(); if (!loggedIn) return <Redirect href="/login" />; return <ScrollView style={screen.container} contentContainerStyle={screen.scroll}><Text style={styles.kicker}>Estado en vivo</Text><Text style={styles.title}>Pedidos en cocina.</Text>{turns.map((turn, index) => <View key={turn.id} style={styles.order}><Text style={styles.status}>{index === 0 ? 'PREPARANDO' : 'EN COLA'}</Text><Text style={styles.name}>{turn.name}</Text><Text style={styles.meta}>Retiro {turn.time} · {turn.people} persona(s)</Text></View>)}</ScrollView>; }
+const styles = StyleSheet.create({ kicker: { color: colors.coral, fontWeight: '800', textTransform: 'uppercase' }, title: { color: colors.ink, fontSize: 32, fontWeight: '900' }, order: { backgroundColor: colors.paper, borderRadius: 16, padding: 18, gap: 5 }, status: { color: colors.green, fontWeight: '900', fontSize: 12 }, name: { color: colors.ink, fontSize: 20, fontWeight: '800' }, meta: { color: colors.muted } });
